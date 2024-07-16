@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Test | Ajax </title>
+</head>
+<body>
+
+    <button onclick="sendingData()"> Send!  </button>
+
+</body>
+
+    <script>
+        
+        function sendingData(){
+
+            let request = new XMLHttpRequest();
+            
+            request.onreadystatechange = function(){
+                if(request.readyState == 4 && request.status == 200){
+                    console.log(request.responseText)
+                }
+            }
+
+            // get way !
+            // request.open("GET","test.php?username=Ahmed&password=2074",true);
+            // request.send();
+            // Don't forget the method be as _GET where in next code be as _POST
+
+            
+            request.open("POST","test.php",true);
+            request.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
+            request.send("username=Ahmed&password=2074");
+            // indicating that the data being sent is URL-encoded, typically used for form submissions.
+
+        }
+
+    </script>
+
+</html>

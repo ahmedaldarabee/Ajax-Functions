@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Ajax Method</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="show"></div>
+
+    <button data-need="test1.html" > get data one </button>
+    <button data-need="test2.html" > get two two </button>
+    
+    </body>
+
+<script>
+
+            
+
+        $(function (){
+            /*
+        load الصفحة لي بدنا نجيب منها البيانات
+        responseText -> Data 
+             The load() method in jQuery is used to load data from a server and place the returned HTML into the matched element(s). 
+             making an AJAX request and updating part of a web page with the response.
+           */
+            $("#show").load("intro.html #info",function(responseText,responseStatus,responseXHR){
+                if(responseStatus == 'success') {
+                    console.log("Good")
+        
+                }
+            });
+        });
+
+        $(function(){
+            $('button').on("click",function(){
+                $("#show").load($(this).data('need') + " #info"),function(responseText,responseStatus,responseXHR){
+                    if(responseStatus == 'success') {
+                        console.log("Good")
+                    }
+                };
+            })
+        })
+
+    </script>
+
+</html>

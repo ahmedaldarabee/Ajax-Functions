@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Ajax Method</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <button id="btnStatus1"> Get info 1</button>
+    <button id="btnStatus2"> Post info 2</button>
+    </body>
+
+        <script>
+
+            $(function(){
+                $('#btnStatus1').on("click",function(){
+                    $.get("test.php?username=Ahmed&password=2040",function(data,responseState,responseXHR){
+                        console.log(data)
+                    })
+                })
+            })
+
+            $(function(){
+                $('#btnStatus2').on("click",function(){
+                    $.post("test.php",{username : "Ahmed" , password : "ascll78"},function(data,responseState,responseXHR){
+                        console.log(data)
+                    })
+                })
+            })
+
+        </script>
+
+</html>

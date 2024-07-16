@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Test | Ajax </title>
+</head>
+<body>
+    
+    <p id="info"> hello ahmed!</p>
+    
+    <br><br><br>
+
+    <button onclick="printInfo()"> first example </button>
+    <button onclick="getRepos()">  second example </button>
+    
+    <button onclick="showData()">  third example </button>
+    <button onclick="printData()">  four example </button>
+
+</body>
+
+    <script>
+
+        // ajax more flexible way to process data in async way without do refreshing to the page 
+        // but you need to enable live server because have http rather than file !
+        // first Example
+        
+        function printInfo(){
+
+            let info = document.querySelector("#info")
+            let xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    info.innerHTML = xhr.responseText;
+                }
+            }
+            xhr.open("GET","studentInfo.txt",true);
+            xhr.send();
+        }
+
+        function getData(){
+            const url = "https://jsonplaceholder.typicode.com/posts/1"
+
+            let xhr = new XMLHttpRequest();
+            
+            xhr.onreadystatechange = ()=>{
+                if(xhr.readyState == 4 &&  xhr.status == 200 ){
+                    console.log(xhr.responseText)
+                }
+            }
+
+            xhr.open("GET",url,true);
+            xhr.send();
+        }
+    
+        function showData(){
+            
+            let requestServer = new XMLHttpRequest();
+            
+            requestServer.onreadystatechange = function(){
+                if(requestServer.readyState == 4 && requestServer.status == 200){
+                    let jsonObject = JSON.parse(requestServer.responseText);
+                    document.querySelector("#info").innerHTML = jsonObject.name;
+                }
+            }
+
+            requestServer.open("GET","../JSON/studentData.json",true)
+            requestServer.send()
+        }
+        
+        function printData(){
+            let request = new XMLHttpRequest();
+
+            request.onreadystatechange = function(){
+                if(request.readyState == 4 && request.status == 200){
+                    let content = document.querySelector("#info");
+                    let data = JSON.parse(request.responseText);
+                    
+                    let contentNew = '';
+                    for(let i = 0 ; i < data.length ; i++){
+                        contentNew += data[i].name + '<br>';
+                    }
+                    content.innerHTML = contentNew;
+                }
+            }
+
+            request.open("GET","../JSON/student.json",true);
+            request.send();
+        }
+    </script>
+</html>

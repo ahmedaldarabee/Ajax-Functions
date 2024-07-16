@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    
+    <div class="parent">
+
+        <div class="inputs">
+            <input id="user-name" type="text" placeholder="username"><br><br>
+            <input id="user-pass" type="password" placeholder="password"><br><br>
+        </div>
+    
+        <div class="btn">
+            <button class="show">show data</button>
+        </div>
+
+        <div class="content">
+        </div>
+
+    </div>
+</body>
+
+    <script>
+        $(function(){
+           $(".show").on("click",function(){
+
+                $.ajax(({
+                    method : "POST",
+                    url : "comment.php",
+                    contentType : "application/x-www-form-urlencoded",
+                    
+                    data :{
+                        username:$("#user-name").val(),
+                        password:$("#user-pass").val()
+                    },
+                    
+                    success: function(data,statusResponse,xhrResponse){
+                        console.log("\nSuccess section\n")
+                        $(".content").html(data);
+                    },
+                    
+                    error: function(xhrResponse,statusResponse,errorMessage){
+                        console.log("\nerror section\n")
+                        console.log(errorMessage)
+                    },
+                    complete: function(xhrResponse,statusResponse){
+                        console.log("\ncomplete section\n")
+                    }
+                }))
+            })
+        })
+
+    </script>
+
+</html>

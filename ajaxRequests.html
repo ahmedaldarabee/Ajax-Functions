@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Ajax Request </title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <div id="show"></div>
+    <button> show info</button>
+</head>
+<body>
+    
+    <script>
+
+        $(function(){
+            $("button").on("click",function(){
+
+                $.ajax({
+
+                    // define the method
+                    method: "POST",
+
+                    // default cache be as true ( cache the request )
+                    cache : true,//what will do when be as false ?
+
+                    // async: true as default value
+                    async : true,
+
+                    // timeout: duration needed to waited when we have multi request!
+                    timeout : 3000,
+
+                    // data type : define needed data from server
+                    // default value be will expected needed data in correct way !
+                    dataType : 'text',
+
+                    // for authentications process
+                    // username : "Ahmed",
+                    // password : "as78",
+
+                    // for security data
+                    contentType : "application/x-www-form-urlencoded",
+
+                    // define API
+                    url : "test.php",
+
+                    // data because be as post method
+
+                    data : {
+                        username : "Ahmed Nayel",
+                        password : "ascll78"
+                    },
+
+                    // function when we want to do action before send the request
+
+                    beforeSend : function (XHR){
+                        console.log("Before Do Request !\n")
+                    },
+
+                    // success status: data,status,xhr
+                    success: function(dataResponse,statusResponse,xhrResponse){
+
+                        console.log("\nsuccessfully section\n")
+                        console.log(dataResponse)
+                        console.log(statusResponse)
+                        console.log(xhrResponse)
+                    }, 
+
+                    // error when exist! xhrResponse, statusResponse , errorMessage
+
+                    error: function(xhrResponse,statusResponse,errorMessage){
+                        
+                        console.log("\nerror section\n")
+                        console.log(xhrResponse)
+                        console.log(statusResponse)
+                        console.log(errorMessage)
+                    },
+
+                    // after request is finished ( after success section )
+                    complete: function(xhrResponse,statusResponse){
+                        console.log("\n complete section\n")
+                        console.log(xhrResponse)
+                        console.log(statusResponse)
+                    }
+                })
+            })
+        })
+
+    </script>
+
+</body>
+</html>
