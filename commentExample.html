@@ -55,6 +55,30 @@
             })
         })
 
+
+        $(function(){
+            $.ajax(({
+
+                method : "GET",
+                url : "https://jsonplaceholder.typicode.com/posts/1",
+
+                success : function(data,status,xhrResponse){
+                    console.log("success section - get method")
+                    console.log(data)
+                },
+                
+                error : function(xhr,status,error){
+
+                },
+                
+                complete : function(xhrResponse,status){
+
+                }
+
+                
+            }))
+        })
+
     </script>
 
 </html>
